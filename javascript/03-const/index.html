@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>const — imutabilidade, escopo e memória</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script defer>
+    /* ========= EXEMPLOS COM CONST ========= */
+
+    // 1
+    const nome1 = "Sanciweferson"
+    document.getElementById("js-value-1").textContent = `"${nome1}"`
+
+    // 3 (mutação interna)
+    const pessoa = { nome: "San" }
+    pessoa.nome = "Weferson"
+    document.getElementById("js-value-3").textContent = pessoa.nome
+
+    // 8
+    const funcoes = []
+    for (let i = 0; i < 3; i++) {
+      funcoes.push(function () {
+        return i
+      })
+    }
+  </script>
+</head>
+
+<body>
+
+  <h1>const — entendendo referências, não valores</h1>
+
+  <!-- 1 -->
+  <div class="code-card">
+    <h3>1. Declaração com <code>const</code></h3>
+
+    <div class="code-block">
+      <span class="palava-chave">const</span>
+      <span class="identificador">nome</span>
+      <span class="operator">=</span>
+      <span class="value" id="js-value-1"></span>
+    </div>
+
+    <div class="result">
+      console.log(nome) → <span class="defined">"Sanciweferson"</span>
+    </div>
+
+    <div class="explanation">
+      <code>const</code> exige atribuição imediata.
+      <br><br>
+      A variável nasce já apontando para um valor.
+      <br><br>
+      Assim como <code>let</code>, existe TDZ.
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="code-card">
+    <h3>2. Sem atribuição inicial</h3>
+
+    <div class="code-block">
+      <span class="palava-chave">const</span> nome;
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">SyntaxError</span>
+    </div>
+
+    <div class="explanation">
+      <code>const</code> não permite declaração vazia.
+      <br><br>
+      O motor precisa saber imediatamente
+      para onde a referência aponta.
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="code-card">
+    <h3>3. Reatribuição é proibida</h3>
+
+    <div class="code-block">
+      <span class="palava-chave">const</span> nome = "San"<br>
+      nome = "Weferson"
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">TypeError</span>
+    </div>
+
+    <div class="explanation">
+      A referência criada por <code>const</code>
+      não pode ser alterada.
+      <br><br>
+      O erro acontece em tempo de execução.
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="code-card">
+    <h3>4. Hoisting e TDZ</h3>
+
+    <div class="code-block">
+      console.log(valor)<br>
+      <span class="palava-chave">const</span> valor = "JS"
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">ReferenceError</span>
+    </div>
+
+    <div class="explanation">
+      <code>const</code> também sofre hoisting,
+      mas fica inacessível até a inicialização.
+      <br><br>
+      TDZ impede qualquer acesso antecipado.
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="code-card">
+    <h3>5. Shadowing com <code>const</code></h3>
+
+    <div class="code-block">
+      const valor = 100;<br><br>
+
+      function teste() {<br>
+      &nbsp;&nbsp;return valor;<br>
+      &nbsp;&nbsp;<span class="palava-chave">const</span> valor = 10;<br>
+      }<br><br>
+
+      console.log(teste());
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">ReferenceError</span>
+    </div>
+
+    <div class="explanation">
+      A variável local entra em TDZ
+      até a linha do <code>const</code>.
+      <br><br>
+      O acesso antes da inicialização
+      é proibido.
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="code-card">
+    <h3>6. Escopo de bloco</h3>
+
+    <div class="code-block">
+      if (true) {<br>
+      &nbsp;&nbsp;<span class="palava-chave">const</span> segredo = "JS"<br>
+      }<br>
+      console.log(segredo)
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">ReferenceError</span>
+    </div>
+
+    <div class="explanation">
+      <code>const</code> vive apenas
+      dentro do bloco onde foi criado.
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="code-card">
+    <h3>7. <code>const</code> não congela objetos</h3>
+
+    <div class="code-block">
+      <span class="palava-chave">const</span> pessoa = { nome: "San" }<br>
+      pessoa.nome = "Weferson"
+    </div>
+
+    <div class="result">
+      pessoa.nome → <span class="defined" id="js-value-3"></span>
+    </div>
+
+    <div class="explanation">
+      <code>const</code> protege a referência,
+      não o conteúdo.
+      <br><br>
+      O objeto continua mutável.
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="code-card">
+    <h3>8. Closure com <code>const</code></h3>
+
+    <div class="code-block">
+      const funcoes = []<br><br>
+      for (<span class="palava-chave">let</span> i = 0; i &lt; 3; i++) {<br>
+      &nbsp;&nbsp;funcoes.push(function () { return i })<br>
+      }
+    </div>
+
+    <div class="result">
+      funcoes[0]() → 0<br>
+      funcoes[1]() → 1<br>
+      funcoes[2]() → 2
+    </div>
+
+    <div class="explanation">
+      O array não muda de referência.
+      <br><br>
+      As funções fecham sobre
+      valores distintos de <code>i</code>.
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="code-card">
+    <h3>9. <code>const</code> + Garbage Collector</h3>
+
+    <div class="code-block">
+      <span class="palava-chave">const</span> dado = { info: "memória" }<br>
+      // quando sai do escopo → elegível para GC
+    </div>
+
+    <div class="explanation">
+      <code>const</code> não impede coleta de lixo.
+      <br><br>
+      Quando o escopo morre e nenhuma
+      referência aponta para o valor,
+      o GC pode agir.
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="code-card">
+    <h3>10. Regra de ouro</h3>
+
+    <div class="explanation">
+      Use <code>const</code> por padrão.
+      <br><br>
+      Troque para <code>let</code> apenas
+      quando precisar reatribuir.
+      <br><br>
+      Evite <code>var</code>.
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+/* =====================
+   TEMA & VARIÁVEIS (OKLCH para cores vibrantes e modernas)
+===================== */
+:root {
+  --background: oklch(0.98 0.005 285.823);
+  --foreground: oklch(0.141 0.005 285.823);
+  
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  
+  --primary: oklch(0.55 0.22 260); /* Azul moderno */
+  --primary-foreground: oklch(0.98 0.01 260);
+  
+  --muted: oklch(0.95 0.005 285);
+  --muted-foreground: oklch(0.45 0.016 285.938);
+  
+  --border: oklch(0.91 0.01 285);
+  --radius: 1rem;
+  
+  /* Cores de Estado */
+  --js-kw: oklch(0.65 0.2 330);    /* Rosa/Roxo para keywords */
+  --js-val: oklch(0.68 0.16 160);  /* Verde para strings/valores */
+  --status-undef: oklch(0.7 0.1 50); /* Ocre para undefined */
+  --status-err: oklch(0.6 0.18 25);  /* Vermelho para erro */
+  
+  --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+}
+
+/* =====================
+   RESET & BASE
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.7;
+  padding: 32px;
+}
+
+/* =====================
+   TIPOGRAFIA
+===================== */
+h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: var(--foreground);
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+code {
+  background: var(--muted);
+  padding: 0.15em 0.35em;
+  border-radius: calc(var(--radius) / 2);
+  font-size: 0.95em;
+}
+
+/* =====================
+   CARDS
+===================== */
+.code-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.8rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.code-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* =====================
+   BLOCO DE CÓDIGO
+===================== */
+.code-block {
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  overflow-x: auto;
+}
+
+/* =====================
+   RESULTADO
+===================== */
+.result {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--secondary);
+  border-left: 4px solid var(--primary);
+  padding: 0.75rem 1rem;
+  border-radius: calc(var(--radius) / 1.5);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* =====================
+   EXPLICAÇÃO
+===================== */
+.explanation {
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+}
+
+/* =====================
+   SINTAXE JS (SIMPLIFICADA)
+===================== */
+.palava-chave {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.identificador {
+  color: var(--foreground);
+}
+
+.value {
+  color: oklch(0.55 0.15 145);
+}
+
+/* =====================
+   ESTADOS DE RESULTADO
+===================== */
+.defined {
+  color: oklch(0.55 0.15 145);
+  font-weight: 600;
+}
+
+.undefined {
+  color: oklch(0.65 0.17 30);
+  font-weight: 600;
+}
+
+.error {
+  color: var(--destructive);
+  font-weight: 600;
+}
+
+/* =====================
+   SCROLLBAR
+===================== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-bar);
+  border-radius: var(--radius);
+}

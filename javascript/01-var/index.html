@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>var e hoisting — aula profunda e visual</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+</head>
+
+<body>
+<h1>var e hoisting — entendendo o motor do JavaScript</h1>
+
+<!-- ================= VARIÁVEIS ================= -->
+<div class="code-card">
+  <h1>0. O que é uma variável?</h1>
+
+  <p>
+    Em JavaScript, uma variável <strong>não é uma caixa</strong> que guarda valores.
+    Ela é um <strong>identificador</strong> registrado no
+    <strong>ambiente léxico</strong>, que aponta para um
+    <strong>endereço de memória</strong>.
+  </p>
+
+  <p>
+    O <strong>ambiente léxico</strong> é a estrutura interna do JavaScript responsável por
+    <strong>registrar os identificadores</strong>, definir o
+    <strong>escopo</strong> onde eles existem e manter a
+    <strong>referência ao valor</strong> armazenado na memória.
+  </p>
+</div>
+
+<!-- ================= 1. VAR ================= -->
+<div class="code-card">
+  <h3>1. Declaração com <code>var</code></h3>
+
+  <div class="code-block">
+    <span class="palava-chave">var</span>
+    <span class="identificador">name</span>
+    <span class="operator">=</span>
+    <span class="value" id="js-value-1"></span>
+  </div>
+
+  <div class="result">
+    console.log(nome) → <span class="defined">"Sanciweferson"</span>
+  </div>
+
+  <div class="explanation">
+    Antes de qualquer linha rodar, o JavaScript faz uma fase invisível chamada
+    <strong>fase de criação</strong>.
+    Nela, o motor já cria a variável <code>nome</code> e coloca o valor
+    <code>undefined</code> na memória.
+    <br /><br />
+    Só depois, na fase de execução, o valor
+    <code>"Sanciweferson"</code> é atribuído.
+    <br /><br />
+    O hoisting acontece aqui, mas como você acessa a variável só depois da atribuição,
+    ele passa despercebido.
+  </div>
+</div>
+
+  <!-- 2 -->
+  <div class="code-card">
+    <h3>2. Redeclaração silenciosa</h3>
+
+    <div class="code-block">
+      <span class="palava-chave">var</span>
+      <span class="identificador">name</span> 
+      <span class="operator">=</span>
+      <span class="value" id="js-value-2"></span>
+    </div>
+
+    <div class="result">
+      console.log(nome) → <span class="defined">"San"</span>
+    </div>
+
+    <div class="explanation">
+      <code>var</code> permite declarar a mesma variável mais de uma vez no mesmo escopo.
+      <br><br>
+      O motor verifica: a variável já existe?
+      Se sim, ele ignora a nova declaração e executa apenas a atribuição.
+      <br><br>
+      Não há erro, aviso ou proteção.
+      Esse comportamento é um dos principais motivos do <code>var</code> ser considerado
+      perigoso em código grande.
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="code-card">
+    <h3>3. Reatribuição</h3>
+
+    <div class="code-block">
+      <span class="identificador">name</span>
+      <span class="operator">=</span> <span class="value" id="js-value-3"></span>
+    </div>
+
+    <div class="result">
+      console.log(nome) → <span class="defined">"Weferson"</span>
+    </div>
+
+    <div class="explanation">
+      Aqui não existe nova variável.
+      Apenas o valor apontado por <code>nome</code> é trocado.
+      <br><br>
+      Variáveis em JavaScript funcionam como etiquetas que apontam para valores na memória.
+      Trocar o valor não muda a variável, apenas o conteúdo referenciado.
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="code-card">
+    <h3>4. Hoisting básico</h3>
+
+    <div class="code-block">
+      console.log(hoist)<br>
+      <span class="js-keyword">var</span> hoist =
+      <span class="js-value">"JS"</span>
+    </div>
+
+    <div class="result">
+      Resultado → <span class="undefined">undefined</span>
+    </div>
+
+    <div class="explanation">
+      Durante a fase de criação, o motor transforma o código internamente em:
+      <br><br>
+      <code>var hoist;</code><br>
+      <code>console.log(hoist);</code><br>
+      <code>hoist = "JS";</code>
+      <br><br>
+      A declaração sobe, mas a atribuição fica no lugar.
+      <br><br>
+      <code>undefined</code> significa: a variável existe, mas ainda não recebeu valor.
+    </div>
+  </div>
+
+  <!-- 5 -->
+<div class="code-card">
+  <h3>5. Hoisting em função (shadowing com <code>var</code>)</h3>
+
+  <p class="explanation">
+    Quando usamos <code>var</code> dentro de uma função, a declaração da variável
+    é movida para o topo do escopo da função (hoisting).
+    Isso faz com que a variável local exista desde o início da execução,
+    mesmo estando declarada depois no código.
+  </p>
+
+  <div class="code-block">
+    <code>
+      var valor = 100;<br><br>
+
+      function teste() {<br>
+      &nbsp;&nbsp;return valor;<br>
+      &nbsp;&nbsp;<span class="js-keyword">var</span> valor = 10;<br>
+      }<br><br>
+
+      console.log(teste());
+    </code>
+  </div>
+
+  <p class="explanation">
+    Internamente, o JavaScript interpreta a função assim:
+  </p>
+
+  <div class="code-block">
+    <code>
+      function teste() {<br>
+      &nbsp;&nbsp;<span class="js-keyword">var</span> valor; <span class="comment">// hoisting → undefined</span><br>
+      &nbsp;&nbsp;return valor;<br>
+      &nbsp;&nbsp;valor = 10;<br>
+      }
+    </code>
+  </div>
+
+  <p class="explanation">
+    A variável <code>valor</code> declarada com <code>var</code> dentro da função
+    cria um novo escopo local, que <strong>sombra</strong> a variável global
+    (<code>valor = 100</code>).
+    No momento do <code>return</code>, essa variável local ainda não recebeu valor,
+    então o retorno é <code>undefined</code>.
+  </p>
+
+  <div class="result">
+    Resultado no console → <span class="undefined">undefined</span>
+  </div>
+
+  <p class="note">
+    ⚠️ Observação importante:
+    o valor retornado pela função só aparece no console porque foi usado
+    <code>console.log(teste())</code>.
+    Chamar apenas <code>teste()</code> não exibe nada.
+  </p>
+</div>
+
+
+    <div class="explanation">
+      Dentro da função, o motor cria primeiro:
+      <code>var valor;</code>
+      <br><br>
+      Essa variável local esconde a variável externa.
+      <br><br>
+      Mesmo sem valor atribuído ainda, ela já existe e retorna
+      <code>undefined</code>.
+      <br><br>
+      Esse fenômeno é chamado de <strong>shadowing</strong> (sombreamento).
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="code-card">
+    <h3>6. <code>var</code> ignora blocos</h3>
+
+    <div class="code-block">
+      for (<span class="js-keyword">var</span> i = 0; i &lt; 1; i++) {}<br>
+      console.log(i)
+    </div>
+
+    <div class="result">
+      Resultado → <span class="defined" id="result"></span>
+    </div>
+
+    <div class="explanation">
+      Blocos como <code>for</code>, <code>if</code> e <code>while</code>
+      não criam escopo para <code>var</code>.
+      <br><br>
+      A variável <code>i</code> pertence ao escopo da função ou global.
+      <br><br>
+      Esse comportamento causou inúmeros bugs históricos e motivou a criação do
+      <code>let</code>.
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="code-card">
+    <h3>7. Função atribuída a variável</h3>
+
+    <div class="code-block">
+      dizerOi()<br>
+      <span class="js-keyword">var</span> dizerOi = function () {}
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">TypeError</span>
+    </div>
+
+    <div class="explanation">
+      Apenas a variável <code>dizerOi</code> sobe.
+      <br><br>
+      No momento da chamada, ela ainda vale
+      <code>undefined</code>.
+      <br><br>
+      Funções declaradas com <code>function nome(){}</code> sobem por completo.
+      Funções atribuídas a variáveis não.
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="code-card">
+    <h3>8. Closure com <code>var</code></h3>
+
+    <div class="code-block">
+      var funcoes = []<br><br>
+      for (<span class="js-keyword">var</span> i = 0; i &lt; 3; i++) {<br>
+      &nbsp;&nbsp;funcoes.push(function () { return i })<br>
+      }
+    </div>
+
+    <div class="result">
+      funcoes[0]() → 3<br>
+      funcoes[1]() → 3<br>
+      funcoes[2]() → 3
+    </div>
+
+    <div class="explanation">
+      Todas as funções fecham sobre a mesma variável <code>i</code>.
+      <br><br>
+      Quando o loop termina, <code>i</code> vale 3.
+      <br><br>
+      Closure não copia valores, ela mantém referências vivas na memória.
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="code-card">
+    <h3>9. Closure correto usando <code>var</code></h3>
+
+    <div class="code-block">
+      for (<span class="js-keyword">var</span> i = 0; i &lt; 3; i++) {<br>
+      &nbsp;&nbsp;(function (valorAtual) {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;funcoes.push(function () { return valorAtual })<br>
+      &nbsp;&nbsp;})(i)<br>
+      }
+    </div>
+
+    <div class="result">
+      Resultado → <span class="defined">0, 1, 2</span>
+    </div>
+
+    <div class="explanation">
+      Cada execução da IIFE cria um novo escopo.
+      <br><br>
+      O valor de <code>i</code> é copiado para <code>valorAtual</code>.
+      <br><br>
+      Assim, cada função fecha sobre uma memória diferente.
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="code-card">
+    <h3>10. Garbage Collector</h3>
+
+    <div class="code-block">
+      <span class="js-keyword">var</span> lixo =
+      <span class="js-value">"memória"</span><br>
+      lixo = null
+    </div>
+
+    <div class="result">
+      Estado → <span class="defined">sem referência</span>
+    </div>
+
+    <div class="explanation">
+      O Garbage Collector remove valores que não podem mais ser alcançados.
+      <br><br>
+      A variável continua existindo, mas o valor antigo não tem mais nenhuma referência.
+      <br><br>
+      Se uma closure ainda apontasse para esse valor, o GC não poderia removê-lo.
+    </div>
+  </div>
+
+</body>
+
+</html>

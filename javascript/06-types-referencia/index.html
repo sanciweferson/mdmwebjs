@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+  <title>Tipos de Referência (Objetos)</title>
+</head>
+<body>
+  <main class="container">
+  
+    <h2>Tipos de Referência (Objetos)</h2>
+  
+    <!-- OBJECT -->
+    <div class="code-card">
+      <h3>Object</h3>
+      <div class="code-block">
+        const obj = <span id="type-object"></span>
+      </div>
+      <div class="result">
+        console.log(obj, typeof obj)
+      </div>
+      <div class="explanation">
+        Object é um contêiner de pares chave-valor, mutável e básico para criar estruturas.
+      </div>
+    </div>
+  
+    <!-- ARRAY -->
+    <div class="code-card">
+      <h3>Array</h3>
+      <div class="code-block">
+        const arr = <span id="type-array"></span>
+      </div>
+      <div class="result">
+        console.log(arr, typeof arr, Array.isArray(arr))
+      </div>
+      <div class="explanation">
+        Array é uma lista ordenada de valores. Um tipo especial de object.
+      </div>
+    </div>
+  
+    <!-- FUNCTION -->
+    <div class="code-card">
+      <h3>Function</h3>
+      <div class="code-block">
+        const fn = <span id="type-function"></span>
+      </div>
+      <div class="result">
+        console.log(fn, typeof fn)
+      </div>
+      <div class="explanation">
+        Function é um bloco de código reutilizável. Tipo referência, mas typeof retorna "function".
+      </div>
+    </div>
+  
+    <!-- DATE -->
+    <div class="code-card">
+      <h3>Date</h3>
+      <div class="code-block">
+        const today = <span id="type-date"></span>
+      </div>
+      <div class="result">
+        console.log(today, typeof today)
+      </div>
+      <div class="explanation">
+        Date representa datas e horas. É um objeto que permite manipulação de tempo.
+      </div>
+    </div>
+  
+    <!-- MAP -->
+    <div class="code-card">
+      <h3>Map</h3>
+      <div class="code-block">
+        const map = <span id="type-map"></span>
+      </div>
+      <div class="result">
+        console.log(map, typeof map)
+      </div>
+      <div class="explanation">
+        Map é coleção de pares chave-valor que mantém a ordem de inserção.
+      </div>
+    </div>
+  
+    <!-- SET -->
+    <div class="code-card">
+      <h3>Set</h3>
+      <div class="code-block">
+        const set = <span id="type-set"></span>
+      </div>
+      <div class="result">
+        console.log(set, typeof set)
+      </div>
+      <div class="explanation">
+        Set é coleção de valores únicos. Duplicados são ignorados.
+      </div>
+    </div>
+  
+    <!-- WEAKMAP -->
+    <div class="code-card">
+      <h3>WeakMap</h3>
+      <div class="code-block">
+        const weakMap = <span id="type-weakmap"></span>
+      </div>
+      <div class="result">
+        console.log(weakMap, typeof weakMap)
+      </div>
+      <div class="explanation">
+        WeakMap é um Map com referência fraca para chaves. Útil para memória e coleta de lixo.
+      </div>
+    </div>
+  
+    <!-- WEAKSET -->
+    <div class="code-card">
+      <h3>WeakSet</h3>
+      <div class="code-block">
+        const weakSet = <span id="type-weakset"></span>
+      </div>
+      <div class="result">
+        console.log(weakSet, typeof weakSet)
+      </div>
+      <div class="explanation">
+        WeakSet é um Set com referências fracas. Valores não podem ser iterados diretamente.
+      </div>
+    </div>
+  
+    <!-- REGEXP -->
+    <div class="code-card">
+      <h3>RegExp</h3>
+      <div class="code-block">
+        const regex = <span id="type-regexp"></span>
+      </div>
+      <div class="result">
+        console.log(regex, typeof regex)
+      </div>
+      <div class="explanation">
+        RegExp é usado para criar padrões de busca e validação de texto.
+      </div>
+    </div>
+  
+  </main>
+
+</body>
+</html>

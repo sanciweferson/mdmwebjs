@@ -1,0 +1,183 @@
+/* =====================
+   TEMA (SUAS CORES)
+===================== */
+:root {
+  --scroll-bar: oklch(0.92 0.01 260.912);
+
+  --radius: 0.65rem; /* raio (bordas arredondadas) */
+  
+  --background: oklch(1 0 0); /* cor de fundo principal */
+  --foreground: oklch(0.141 0.005 285.823); /* cor do texto principal (frente) */
+  
+  --card: oklch(1 0 0); /* cor de fundo dos cartões */
+  --card-foreground: oklch(0.141 0.005 285.823); /* cor do texto dentro dos cartões */
+  
+  --popover: oklch(1 0 0); /* fundo de popups, tooltips, menus suspensos */
+  --popover-foreground: oklch(0.141 0.005 285.823); /* texto dos popups */
+  
+  --primary: oklch(0.488 0.243 264.376); /* cor principal (botões, links, destaques) */
+  --primary-foreground: oklch(0.97 0.014 254.604); /* cor do texto sobre o elemento principal */
+  
+  --secondary: oklch(0.967 0.001 286.375); /* cor secundária (usada em botões secundários, detalhes) */
+  --secondary-foreground: oklch(0.21 0.006 285.885); /* texto sobre o elemento secundário */
+  
+  --muted: oklch(0.967 0.001 286.375); /* tons suaves, para fundos de seções neutras */
+  --muted-foreground: oklch(0.552 0.016 285.938); /* texto em áreas suaves (ex: descrição) */
+  
+  --accent: oklch(0.967 0.001 286.375); /* cor de destaque (hover, foco, pequenas ênfases) */
+  --accent-foreground: oklch(0.21 0.006 285.885); /* texto sobre o destaque */
+  
+  --destructive: oklch(0.577 0.245 27.325); /* cor para ações destrutivas (excluir, erro) */
+  
+  --border: oklch(0.92 0.004 286.32); /* cor das bordas */
+  --input: oklch(0.92 0.004 286.32); /* borda/fundo de campos de formulário */
+  --ring: oklch(0.708 0 0); /* cor de anel de foco (focus outline) */
+  
+  --chart-1: oklch(0.809 0.105 251.813); /* cores para gráficos */
+  --chart-2: oklch(0.623 0.214 259.815);
+  --chart-3: oklch(0.546 0.245 262.881);
+  --chart-4: oklch(0.488 0.243 264.376);
+  --chart-5: oklch(0.424 0.199 265.638);
+  
+  --sidebar: oklch(0.985 0 0); /* cor de fundo da barra lateral */
+  --sidebar-foreground: oklch(0.141 0.005 285.823); /* cor do texto da sidebar */
+  --sidebar-primary: oklch(0.546 0.245 262.881); /* elementos principais da sidebar */
+  --sidebar-primary-foreground: oklch(0.97 0.014 254.604); /* texto desses elementos principais */
+  --sidebar-accent: oklch(0.967 0.001 286.375); /* destaque dentro da sidebar */
+  --sidebar-accent-foreground: oklch(0.21 0.006 285.885); /* texto sobre o destaque da sidebar */
+  --sidebar-border: oklch(0.92 0.004 286.32); /* bordas da sidebar */
+  --sidebar-ring: oklch(0.708 0 0); /* anel de foco da sidebar */
+}
+
+
+
+/* =====================
+   RESET & BASE
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+/* =====================
+   LAYOUT
+===================== */
+.container {
+  max-width: 920px;
+  margin: 64px auto;
+  padding: 24px;
+}
+
+/* =====================
+   HEADER
+===================== */
+.main-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.main-header h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.main-header span {
+  color: var(--primary);
+}
+
+/* =====================
+   CARD
+===================== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 24px oklch(0 0 0 / 0.04);
+}
+
+/* =====================
+   TÍTULOS
+===================== */
+.card h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--primary);
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 32px 0 16px;
+  color: var(--foreground);
+}
+
+/* =====================
+   LISTAS
+===================== */
+.card ul {
+  list-style: none;
+  display: grid;
+  gap: 18px;
+}
+
+.card li {
+  position: relative;
+  padding-left: 18px;
+  border-left: 3px solid var(--primary);
+}
+
+/* =====================
+   LABELS
+===================== */
+.label {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+/* =====================
+   TEXTO
+===================== */
+.card p {
+  font-size: 0.95rem;
+  color: var(--muted-foreground);
+  max-width: 65ch;
+}
+
+/* =====================
+   CODE
+===================== */
+code {
+  background: var(--muted);
+  color: var(--foreground);
+  padding: 0.2em 0.45em;
+  border-radius: 0.35rem;
+  font-size: 0.85em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* =====================
+   SEPARAÇÃO VISUAL
+===================== */
+.card h3 + ul {
+  margin-top: 12px;
+}
+
+.card ul + h3 {
+  margin-top: 40px;
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>let e TDZ — entendendo o JavaScript moderno</title>
+
+  <link rel="stylesheet" href="style.css">
+  
+
+</head>
+
+<body>
+
+  <h1>let e escopo — entendendo o motor moderno do JavaScript</h1>
+
+  <!-- 1 -->
+  <div class="code-card">
+    <h3>1. Declaração com <code>let</code></h3>
+
+    <div class="code-block">
+      <span class="palava-chave">let</span>
+      <span class="identificador">nome</span>
+      <span class="operator">=</span>
+      <span class="value" id="js-value-1"></span>
+    </div>
+
+    <div class="result">
+      console.log(nome) → <span class="defined">"Sanciweferson"</span>
+    </div>
+
+    <div class="explanation">
+      O JavaScript cria a variável durante a fase de criação,
+      mas <strong>não inicializa</strong> com <code>undefined</code>.
+      <br><br>
+      Até a linha do <code>let</code>, a variável está na
+      <strong>Temporal Dead Zone (TDZ)</strong>.
+      <br><br>
+      Acessar antes da declaração gera erro, não <code>undefined</code>.
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="code-card">
+    <h3>2. Redeclaração bloqueada</h3>
+
+    <div class="code-block">
+      <span class="palava-chave">let</span> nome = "San"<br>
+      <span class="palava-chave">let</span> nome = "Outro"
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">SyntaxError</span>
+    </div>
+
+    <div class="explanation">
+      <code>let</code> não permite redeclaração no mesmo escopo.
+      <br><br>
+      O erro acontece antes do código rodar.
+      <br><br>
+      Isso evita sobrescritas silenciosas comuns com <code>var</code>.
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="code-card">
+    <h3>3. Reatribuição</h3>
+
+    <div class="code-block">
+      nome = <span class="value" id="js-value-3"></span>
+    </div>
+
+    <div class="result">
+      console.log(nome) → <span class="defined">"Weferson"</span>
+    </div>
+
+    <div class="explanation">
+      <code>let</code> permite reatribuição.
+      <br><br>
+      A variável continua sendo a mesma,
+      apenas o valor na memória é trocado.
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="code-card">
+    <h3>4. Hoisting com <code>let</code></h3>
+
+    <div class="code-block">
+      console.log(valor)<br>
+      <span class="palava-chave">let</span> valor = "JS"
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">ReferenceError</span>
+    </div>
+
+    <div class="explanation">
+      A variável existe na memória,
+      mas ainda não foi inicializada.
+      <br><br>
+      Esse período é a <strong>TDZ</strong>.
+      <br><br>
+      Diferente do <code>var</code>, não existe
+      leitura antecipada como <code>undefined</code>.
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="code-card">
+    <h3>5. Shadowing evitado com <code>let</code></h3>
+
+    <div class="code-block">
+      let valor = 100;<br><br>
+
+      function teste() {<br>
+      &nbsp;&nbsp;return valor;<br>
+      &nbsp;&nbsp;<span class="palava-chave">let</span> valor = 10;<br>
+      }<br><br>
+
+      console.log(teste());
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">ReferenceError</span>
+    </div>
+
+    <div class="explanation">
+      A variável local só passa a existir
+      na linha do <code>let</code>.
+      <br><br>
+      Antes disso, qualquer acesso gera erro.
+      <br><br>
+      Isso impede o shadowing silencioso do <code>var</code>.
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="code-card">
+    <h3>6. Escopo de bloco</h3>
+
+    <div class="code-block">
+      for (<span class="palava-chave">let</span> i = 0; i &lt; 1; i++) {}<br>
+      console.log(i)
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">ReferenceError</span>
+    </div>
+
+    <div class="explanation">
+      <code>let</code> respeita blocos.
+      <br><br>
+      A variável <code>i</code> existe
+      apenas dentro do <code>for</code>.
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="code-card">
+    <h3>7. Função atribuída a variável</h3>
+
+    <div class="code-block">
+      dizerOi()<br>
+      <span class="palava-chave">let</span> dizerOi = function () {}
+    </div>
+
+    <div class="result">
+      Resultado → <span class="error">ReferenceError</span>
+    </div>
+
+    <div class="explanation">
+      A variável está na TDZ no momento da chamada.
+      <br><br>
+      Não existe valor nem <code>undefined</code>.
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="code-card">
+    <h3>8. Closure com <code>let</code></h3>
+
+    <div class="code-block">
+      let funcoes = []<br><br>
+      for (<span class="palava-chave">let</span> i = 0; i &lt; 3; i++) {<br>
+      &nbsp;&nbsp;funcoes.push(function () { return i })<br>
+      }
+    </div>
+
+    <div class="result">
+      funcoes[0]() → 0<br>
+      funcoes[1]() → 1<br>
+      funcoes[2]() → 2
+    </div>
+
+    <div class="explanation">
+      Cada iteração cria uma nova variável <code>i</code>.
+      <br><br>
+      Cada closure aponta para uma memória diferente.
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="code-card">
+    <h3>9. IIFE não é mais necessária</h3>
+
+    <div class="explanation">
+      Com <code>let</code>, o escopo de bloco
+      já resolve o problema clássico do <code>var</code>.
+      <br><br>
+      A gambiarra virou história.
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="code-card">
+    <h3>10. Garbage Collector</h3>
+
+    <div class="code-block">
+      <span class="palava-chave">let</span> lixo = "memória"<br>
+      lixo = null
+    </div>
+
+    <div class="explanation">
+      O valor perde referência.
+      <br><br>
+      Se nenhuma closure apontar para ele,
+      o Garbage Collector pode limpar.
+    </div>
+  </div>
+
+</body>
+
+</html>

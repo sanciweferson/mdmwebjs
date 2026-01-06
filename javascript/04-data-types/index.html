@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Data Types — JavaScript</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- CARD 1 -->
+    <div class="code-card">
+      <h3>1. Data Types — String</h3>
+
+      <!-- Código visual -->
+      <div class="code-block">
+        <span class="keyword">const</span>
+        <span class="variable">name</span>
+        <span>=</span>
+        <span id="types-string"></span>
+      </div>
+
+      <!-- Resultado -->
+      <div class="result">
+        <h4>
+          console.log(name, typeof(name)) →
+          <span class="defined">"Sanciweferson" tipo string</span>
+        </h4>
+      </div>
+
+      <!-- Explicação -->
+      <div class="explanation">
+        <p>
+          Em JavaScript, <strong>todo valor possui um tipo</strong>.
+          O tipo define como o JavaScript entende esse valor
+          e quais operações podem ser feitas com ele.
+        </p>
+
+        <p>
+          O tipo <strong>string</strong> é usado para representar textos.
+          Qualquer valor escrito entre aspas (<code>" "</code>, <code>' '</code> ou <code>` `</code>)
+          é tratado como string.
+        </p>
+
+        <p>
+          A variável <code>name</code> armazena o texto
+          <strong>"Sanciweferson"</strong>, portanto o JavaScript identifica
+          automaticamente esse valor como uma <strong>string</strong>.
+        </p>
+
+        <p>
+          O operador <code>typeof</code> é usado para verificar
+          o tipo de um valor em tempo de execução.
+          Neste caso, ele retorna <strong>"string"</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="code-card">
+      <h3>2. Data Types — Number</h3>
+
+      <!-- Código visual -->
+      <div class="code-block">
+        <span class="keyword">const</span>
+        <span class="variable">name</span>
+        <span>=</span>
+        <span id="types-number"></span>
+      </div>
+
+      <!-- Resultado -->
+      <div class="result">
+        <h4>
+          console.log(age, typeof(age)) →
+          <span class="defined">"29" tipo number</span>
+        </h4>
+      </div>
+
+      <!-- Explicação -->
+      <div class="explanation">
+        <p>
+          O tipo <strong>number</strong> é usado para representar valores numéricos
+          em JavaScript. Diferente de outras linguagens, não existe separação entre
+          números inteiros e decimais: <strong>todos são do tipo number</strong>.
+        </p>
+
+        <p>
+          Isso significa que valores como <code>10</code>, <code>3.14</code> e
+          <code>-5</code> pertencem ao mesmo tipo. Internamente, o JavaScript usa
+          um padrão chamado <em>IEEE 754</em> para representar números.
+        </p>
+
+        <p>
+          Números do tipo <strong>number</strong> permitem operações matemáticas
+          como soma, subtração, multiplicação e divisão.
+          Por exemplo: <code>10 + 5</code> resulta em <strong>15</strong>.
+        </p>
+
+        <p>
+          O operador <code>typeof</code>, quando aplicado a um número,
+          retorna <strong>"number"</strong>, confirmando que o valor armazenado
+          é tratado como um dado numérico pelo JavaScript.
+        </p>
+
+        <p>
+          É importante lembrar que números escritos entre aspas,
+          como <code>"10"</code>, <strong>não são number</strong>,
+          mas sim <strong>string</strong>, mesmo parecendo números.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="code-card">
+      <h3>4. Data Types — Null</h3>
+
+      <!-- Código visual -->
+      <div class="code-block">
+        <span class="keyword">const</span>
+        <span class="variable">aptNumber</span>
+        <span>=</span>
+        <span id="types-aptNumber"></span>
+      </div>
+
+      <!-- Resultado -->
+      <div class="result">
+        <h4>
+          console.log(aptNumber, typeof(aptNumber)) →
+          <span class="defined">"null" tipo objecto</span>
+        </h4>
+      </div>
+
+      <!-- Explicação -->
+      <div class="explanation">
+        <p>
+          O valor <strong>null</strong> representa a ausência intencional de um valor.
+          Ele é usado quando o programador quer dizer explicitamente:
+          “aqui não existe nada, de propósito”.
+        </p>
+
+        <p>
+          Diferente de <code>undefined</code>, que indica que uma variável
+          ainda não recebeu valor, <code>null</code> é atribuído manualmente.
+          Ele não acontece por acidente.
+        </p>
+
+        <p>
+          Em termos de tipo, o JavaScript retorna <code>"object"</code> ao usar
+          <code>typeof null</code>. Isso é um erro histórico da linguagem,
+          mantido por compatibilidade, e não significa que <code>null</code>
+          seja realmente um objeto.
+        </p>
+
+        <p>
+          O uso de <strong>null</strong> é comum para indicar estados como:
+          valor não definido ainda, resposta vazia de uma busca,
+          ou quando um dado foi propositalmente removido.
+        </p>
+
+        <p>
+          Conceitualmente, <code>null</code> significa:
+          a variável existe, foi criada, mas aponta para “nenhum valor”.
+        </p>
+      </div>
+
+
+    </div>
+
+
+    <!-- CARD 3 -->
+    <div class="code-card">
+      <h3>3. Data Types — Boolean</h3>
+
+      <!-- Código visual -->
+      <div class="code-block">
+        <span class="keyword">const</span>
+        <span class="variable">haskids</span>
+        <span>=</span>
+        <span id="types-haskids"></span>
+      </div>
+
+      <!-- Resultado -->
+      <div class="result">
+        <h4>
+          console.log(haskids, typeof(haskids)) →
+          <span class="defined">"true" tipo boolean</span>
+        </h4>
+      </div>
+
+      <!-- Explicação -->
+      <div class="explanation">
+        <p>
+          O tipo <strong>boolean</strong> representa um valor lógico,
+          que pode ser apenas <code>true</code> ou <code>false</code>.
+          Ele é a base de toda tomada de decisão em JavaScript.
+        </p>
+
+        <p>
+          Valores booleanos são usados principalmente em estruturas
+          de controle como <code>if</code>, <code>else</code>, <code>while</code>
+          e expressões condicionais.
+        </p>
+
+        <p>
+          O operador <code>typeof</code>, quando aplicado a um valor boolean,
+          retorna <strong>"boolean"</strong>, indicando que o JavaScript
+          está lidando com um valor lógico.
+        </p>
+
+        <p>
+          Em JavaScript, expressões de comparação como
+          <code>10 &gt; 5</code> ou <code>5 === 3</code>
+          sempre resultam em um valor boolean.
+        </p>
+
+        <p>
+          É importante entender que o JavaScript também converte outros
+          valores para boolean em certos contextos.
+          Valores como <code>0</code>, <code>""</code>, <code>null</code>,
+          <code>undefined</code> e <code>NaN</code> são tratados como
+          <strong>false</strong>, enquanto a maioria dos outros valores
+          é tratada como <strong>true</strong>.
+        </p>
+      </div>
+<!-- UNDEFINED -->
+<div class="code-card">
+  <h3>Data Type — undefined</h3>
+
+  <div class="code-block">
+    <span class="keyword">let</span>
+    <span class="variable">value</span>
+    <span>=</span>
+    <span id="type-undefined"></span>
+  </div>
+
+  <div class="result">
+    <h4>
+      console.log(value, typeof value) →
+      <span class="defined">undefined tipo undefined</span>
+    </h4>
+  </div>
+
+  <div class="explanation">
+    <p>
+      <strong>undefined</strong> indica que uma variável foi declarada,
+      mas ainda não recebeu nenhum valor.
+    </p>
+    <p>
+      Esse estado é criado automaticamente pelo JavaScript,
+      não é uma decisão explícita do programador.
+    </p>
+  </div>
+</div>
+
+<!-- SYMBOL -->
+<div class="code-card">
+  <h3>Data Type — symbol</h3>
+
+  <div class="code-block">
+    <span class="keyword">const</span>
+    <span class="variable">id</span>
+    <span>=</span>
+    <span id="type-symbol"></span>
+  </div>
+
+  <div class="result">
+    <h4>
+      console.log(id, typeof id) →
+      <span class="defined">Symbol tipo symbol</span>
+    </h4>
+  </div>
+
+  <div class="explanation">
+    <p>
+      <strong>symbol</strong> representa um identificador único
+      e imutável. Nenhum symbol é igual a outro.
+    </p>
+    <p>
+      Ele é usado para evitar conflitos de nomes,
+      especialmente em objetos grandes ou bibliotecas.
+    </p>
+  </div>
+</div>
+
+<!-- BIGINT -->
+<div class="code-card">
+  <h3>Data Type — bigint</h3>
+
+  <div class="code-block">
+    <span class="keyword">const</span>
+    <span class="variable">bigNumber</span>
+    <span>=</span>
+    <span id="type-bigint"></span>
+  </div>
+
+  <div class="result">
+    <h4>
+      console.log(bigNumber, typeof bigNumber) →
+      <span class="defined">bigint tipo bigint</span>
+    </h4>
+  </div>
+
+  <div class="explanation">
+    <p>
+      <strong>bigint</strong> é usado para representar números
+      inteiros muito grandes, sem perda de precisão.
+    </p>
+    <p>
+      Ele é criado adicionando <code>n</code> ao final do número
+      e não pode ser misturado com <code>number</code>.
+    </p>
+  </div>
+</div>
+
+  </main>
+
+</body>
+
+</html>
