@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primitivos vs Referência</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h1>Primitivos vs Referência em JavaScript</h1>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>Valores Primitivos</h2>
+      <p>
+        Primitivos são valores simples, como números e textos.
+        Eles não têm “parte interna” para mudar.
+      </p>
+
+      <pre>
+const name = "Sanciweferson"
+const age = 29
+      </pre>
+
+      <p>
+        Aqui <strong>name</strong> e <strong>age</strong> existem sozinhos,
+        não dependem de objeto nenhum.
+      </p>
+
+      <div id="result1" class="result-box"></div>
+    </div>
+
+    <div class="card">
+      <h2>Valores de Referência (Objeto)</h2>
+      <p>
+        Objetos guardam vários valores juntos. Agora
+        <strong>name</strong> e <strong>age</strong> vivem dentro de
+        <strong>persoa</strong>.
+      </p>
+
+      <pre>
+const persoa = {
+  name: "san",
+  age: 29
+}
+      </pre>
+
+      <p>
+        Quando estão dentro do objeto, precisam do
+        endereço completo:
+        <strong>persoa.name</strong> e <strong>persoa.age</strong>.
+      </p>
+
+      <div id="result2" class="result-box"></div>
+    </div>
+
+  </div>
+
+  <h1>Mutação em JavaScript</h1>
+  
+  <div class="card" id="card1">
+    <h2>1. Valores primitivos NÃO sofrem mutação</h2>
+    <p>Strings, números, booleanos, null, undefined, symbol e bigint são imutáveis.</p>
+    <pre id="code-prim"></pre>
+    <p class="result" id="result-prim"></p>
+  </div>
+  
+  <div class="card" id="card2">
+    <h2>2. Objetos sofrem mutação</h2>
+    <p>Objetos e arrays são mutáveis porque guardam referência na memória.</p>
+    <pre id="code-obj"></pre>
+    <p class="result" id="result-obj"></p>
+  </div>
+  
+  <div class="card" id="card3">
+    <h2>3. const não impede mutação</h2>
+    <p>const impede trocar a variável, mas não impede mudar o conteúdo do objeto.</p>
+    <pre id="code-const"></pre>
+    <p class="result" id="result-const"></p>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>

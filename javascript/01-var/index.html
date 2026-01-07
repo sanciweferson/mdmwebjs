@@ -11,55 +11,55 @@
 </head>
 
 <body>
-<h1>var e hoisting — entendendo o motor do JavaScript</h1>
+  <h1>var e hoisting — entendendo o motor do JavaScript</h1>
 
-<!-- ================= VARIÁVEIS ================= -->
-<div class="code-card">
-  <h1>0. O que é uma variável?</h1>
+  <!-- ================= VARIÁVEIS ================= -->
+  <div class="code-card">
+    <h1>0. O que é uma variável?</h1>
 
-  <p>
-    Em JavaScript, uma variável <strong>não é uma caixa</strong> que guarda valores.
-    Ela é um <strong>identificador</strong> registrado no
-    <strong>ambiente léxico</strong>, que aponta para um
-    <strong>endereço de memória</strong>.
-  </p>
+    <p>
+      Em JavaScript, uma variável <strong>não é uma caixa</strong> que guarda valores.
+      Ela é um <strong>identificador</strong> registrado no
+      <strong>ambiente léxico</strong>, que aponta para um
+      <strong>endereço de memória</strong>.
+    </p>
 
-  <p>
-    O <strong>ambiente léxico</strong> é a estrutura interna do JavaScript responsável por
-    <strong>registrar os identificadores</strong>, definir o
-    <strong>escopo</strong> onde eles existem e manter a
-    <strong>referência ao valor</strong> armazenado na memória.
-  </p>
-</div>
-
-<!-- ================= 1. VAR ================= -->
-<div class="code-card">
-  <h3>1. Declaração com <code>var</code></h3>
-
-  <div class="code-block">
-    <span class="palava-chave">var</span>
-    <span class="identificador">name</span>
-    <span class="operator">=</span>
-    <span class="value" id="js-value-1"></span>
+    <p>
+      O <strong>ambiente léxico</strong> é a estrutura interna do JavaScript responsável por
+      <strong>registrar os identificadores</strong>, definir o
+      <strong>escopo</strong> onde eles existem e manter a
+      <strong>referência ao valor</strong> armazenado na memória.
+    </p>
   </div>
 
-  <div class="result">
-    console.log(nome) → <span class="defined">"Sanciweferson"</span>
-  </div>
+  <!-- ================= 1. VAR ================= -->
+  <div class="code-card">
+    <h3>1. Declaração com <code>var</code></h3>
 
-  <div class="explanation">
-    Antes de qualquer linha rodar, o JavaScript faz uma fase invisível chamada
-    <strong>fase de criação</strong>.
-    Nela, o motor já cria a variável <code>nome</code> e coloca o valor
-    <code>undefined</code> na memória.
-    <br /><br />
-    Só depois, na fase de execução, o valor
-    <code>"Sanciweferson"</code> é atribuído.
-    <br /><br />
-    O hoisting acontece aqui, mas como você acessa a variável só depois da atribuição,
-    ele passa despercebido.
+    <div class="code-block">
+      <span class="palava-chave">var</span>
+      <span class="identificador">name</span>
+      <span class="operator">=</span>
+      <span class="value" id="js-value-1"></span>
+    </div>
+
+    <div class="result">
+      console.log(nome) → <span class="defined">"Sanciweferson"</span>
+    </div>
+
+    <div class="explanation">
+      Antes de qualquer linha rodar, o JavaScript faz uma fase invisível chamada
+      <strong>fase de criação</strong>.
+      Nela, o motor já cria a variável <code>nome</code> e coloca o valor
+      <code>undefined</code> na memória.
+      <br /><br />
+      Só depois, na fase de execução, o valor
+      <code>"Sanciweferson"</code> é atribuído.
+      <br /><br />
+      O hoisting acontece aqui, mas como você acessa a variável só depois da atribuição,
+      ele passa despercebido.
+    </div>
   </div>
-</div>
 
   <!-- 2 -->
   <div class="code-card">
@@ -67,7 +67,7 @@
 
     <div class="code-block">
       <span class="palava-chave">var</span>
-      <span class="identificador">name</span> 
+      <span class="identificador">name</span>
       <span class="operator">=</span>
       <span class="value" id="js-value-2"></span>
     </div>
@@ -138,18 +138,18 @@
   </div>
 
   <!-- 5 -->
-<div class="code-card">
-  <h3>5. Hoisting em função (shadowing com <code>var</code>)</h3>
+  <div class="code-card">
+    <h3>5. Hoisting em função (shadowing com <code>var</code>)</h3>
 
-  <p class="explanation">
-    Quando usamos <code>var</code> dentro de uma função, a declaração da variável
-    é movida para o topo do escopo da função (hoisting).
-    Isso faz com que a variável local exista desde o início da execução,
-    mesmo estando declarada depois no código.
-  </p>
+    <p class="explanation">
+      Quando usamos <code>var</code> dentro de uma função, a declaração da variável
+      é movida para o topo do escopo da função (hoisting).
+      Isso faz com que a variável local exista desde o início da execução,
+      mesmo estando declarada depois no código.
+    </p>
 
-  <div class="code-block">
-    <code>
+    <div class="code-block">
+      <code>
       var valor = 100;<br><br>
 
       function teste() {<br>
@@ -159,54 +159,54 @@
 
       console.log(teste());
     </code>
-  </div>
+    </div>
 
-  <p class="explanation">
-    Internamente, o JavaScript interpreta a função assim:
-  </p>
+    <p class="explanation">
+      Internamente, o JavaScript interpreta a função assim:
+    </p>
 
-  <div class="code-block">
-    <code>
+    <div class="code-block">
+      <code>
       function teste() {<br>
       &nbsp;&nbsp;<span class="js-keyword">var</span> valor; <span class="comment">// hoisting → undefined</span><br>
       &nbsp;&nbsp;return valor;<br>
       &nbsp;&nbsp;valor = 10;<br>
       }
     </code>
-  </div>
-
-  <p class="explanation">
-    A variável <code>valor</code> declarada com <code>var</code> dentro da função
-    cria um novo escopo local, que <strong>sombra</strong> a variável global
-    (<code>valor = 100</code>).
-    No momento do <code>return</code>, essa variável local ainda não recebeu valor,
-    então o retorno é <code>undefined</code>.
-  </p>
-
-  <div class="result">
-    Resultado no console → <span class="undefined">undefined</span>
-  </div>
-
-  <p class="note">
-    ⚠️ Observação importante:
-    o valor retornado pela função só aparece no console porque foi usado
-    <code>console.log(teste())</code>.
-    Chamar apenas <code>teste()</code> não exibe nada.
-  </p>
-</div>
-
-
-    <div class="explanation">
-      Dentro da função, o motor cria primeiro:
-      <code>var valor;</code>
-      <br><br>
-      Essa variável local esconde a variável externa.
-      <br><br>
-      Mesmo sem valor atribuído ainda, ela já existe e retorna
-      <code>undefined</code>.
-      <br><br>
-      Esse fenômeno é chamado de <strong>shadowing</strong> (sombreamento).
     </div>
+
+    <p class="explanation">
+      A variável <code>valor</code> declarada com <code>var</code> dentro da função
+      cria um novo escopo local, que <strong>sombra</strong> a variável global
+      (<code>valor = 100</code>).
+      No momento do <code>return</code>, essa variável local ainda não recebeu valor,
+      então o retorno é <code>undefined</code>.
+    </p>
+
+    <div class="result">
+      Resultado no console → <span class="undefined">undefined</span>
+    </div>
+
+    <p class="note">
+      ⚠️ Observação importante:
+      o valor retornado pela função só aparece no console porque foi usado
+      <code>console.log(teste())</code>.
+      Chamar apenas <code>teste()</code> não exibe nada.
+    </p>
+  </div>
+
+
+  <div class="explanation">
+    Dentro da função, o motor cria primeiro:
+    <code>var valor;</code>
+    <br><br>
+    Essa variável local esconde a variável externa.
+    <br><br>
+    Mesmo sem valor atribuído ainda, ela já existe e retorna
+    <code>undefined</code>.
+    <br><br>
+    Esse fenômeno é chamado de <strong>shadowing</strong> (sombreamento).
+  </div>
   </div>
 
   <!-- 6 -->
