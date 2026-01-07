@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Primitivos vs Referência</title>
+  <title>Primitivos vs Referência — Mutação</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,72 +17,69 @@
     <div class="card">
       <h2>Valores Primitivos</h2>
       <p>
-        Primitivos são valores simples, como números e textos.
-        Eles não têm “parte interna” para mudar.
+        number, string, boolean, null, undefined, symbol e bigint.
+        São imutáveis: não mudam "por dentro". Para alterar,
+        é necessário substituir o valor inteiro (reatribuição).
       </p>
-
-      <pre>
-const name = "Sanciweferson"
-const age = 29
-      </pre>
-
-      <p>
-        Aqui <strong>name</strong> e <strong>age</strong> existem sozinhos,
-        não dependem de objeto nenhum.
-      </p>
-
-      <div id="result1" class="result-box"></div>
+      <pre id="code-prim"></pre>
+      <div id="result-prim" class="result-box"></div>
     </div>
 
     <div class="card">
-      <h2>Valores de Referência (Objeto)</h2>
+      <h2>Valores de Referência</h2>
       <p>
-        Objetos guardam vários valores juntos. Agora
-        <strong>name</strong> e <strong>age</strong> vivem dentro de
-        <strong>persoa</strong>.
+        Objetos, arrays e funções não guardam o valor direto.
+        Eles guardam um endereço de memória. Várias variáveis podem
+        apontar para o mesmo objeto — e aí uma muda e a outra sente junto.
       </p>
+      <pre id="code-obj"></pre>
+      <div id="result-obj" class="result-box"></div>
+    </div>
 
-      <pre>
-const persoa = {
-  name: "san",
-  age: 29
-}
-      </pre>
-
+    <div class="card">
+      <h2>const não impede mutação</h2>
       <p>
-        Quando estão dentro do objeto, precisam do
-        endereço completo:
-        <strong>persoa.name</strong> e <strong>persoa.age</strong>.
+        const impede trocar a variável inteira.
+        Mas o conteúdo interno continua flexível.
+        A trava é no rótulo, não na caixa.
       </p>
+      <pre id="code-const"></pre>
+      <div id="result-const" class="result-box"></div>
+    </div>
 
-      <div id="result2" class="result-box"></div>
+    <div class="card">
+      <h2>Reatribuição x Mutação</h2>
+      <p>
+        Reatribuição: troca o valor todo.<br>
+        Mutação: altera apenas partes internas do mesmo objeto.
+      </p>
+      <pre id="code-extra"></pre>
+      <div id="result-extra" class="result-box"></div>
+    </div>
+
+    <div class="card">
+      <h2>Cópia x Referência</h2>
+      <p>
+        Primitivos copiam o valor.<br>
+        Objetos copiam o endereço (mesmo lugar na memória).
+      </p>
+      <pre id="code-copy"></pre>
+      <div id="result-copy" class="result-box"></div>
+    </div>
+
+    <div class="card">
+      <h2>Evitar mutação acidental</h2>
+      <p>
+        Podemos criar cópias com spread (...).<br>
+        Também dá para congelar objetos com Object.freeze.
+      </p>
+      <pre id="code-safe"></pre>
+      <div id="result-safe" class="result-box"></div>
     </div>
 
   </div>
 
-  <h1>Mutação em JavaScript</h1>
-  
-  <div class="card" id="card1">
-    <h2>1. Valores primitivos NÃO sofrem mutação</h2>
-    <p>Strings, números, booleanos, null, undefined, symbol e bigint são imutáveis.</p>
-    <pre id="code-prim"></pre>
-    <p class="result" id="result-prim"></p>
-  </div>
-  
-  <div class="card" id="card2">
-    <h2>2. Objetos sofrem mutação</h2>
-    <p>Objetos e arrays são mutáveis porque guardam referência na memória.</p>
-    <pre id="code-obj"></pre>
-    <p class="result" id="result-obj"></p>
-  </div>
-  
-  <div class="card" id="card3">
-    <h2>3. const não impede mutação</h2>
-    <p>const impede trocar a variável, mas não impede mudar o conteúdo do objeto.</p>
-    <pre id="code-const"></pre>
-    <p class="result" id="result-const"></p>
-  </div>
   <script src="index.js"></script>
 </body>
 
-</html>
+</html>git 
